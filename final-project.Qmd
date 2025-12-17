@@ -1,7 +1,7 @@
 ---
-title: "Educational Outcomes of Children in Care in Ireland, 2018-2025"
+title: "An analysis of the educational Outcomes of Children in Care in Ireland, 2018-2025 (CSO data)"
 subtitle: "An Analysis of Educational Attainment, Placement Effects, and Success Factors"
-author: "Your Name Here"
+author: "Caolán Magurie"
 date: "`r Sys.Date()`"
 format: 
   pdf:
@@ -14,7 +14,7 @@ format:
 bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=TRUE}
 # Load all required packages
 library(tidyverse)
 library(purrr)
@@ -23,32 +23,25 @@ library(knitr)
 # Set knitr options
 knitr::opts_chunk$set(
   echo = TRUE,           # Show code
-  warning = FALSE,       # Hide warnings
-  message = FALSE,       # Hide messages
+  warning = TRUE,       # Hide warnings
+  message = TRUE,       # Hide messages
   fig.width = 8,         # Figure width
   fig.height = 6,        # Figure height
   fig.align = "center"   # Center figures
 )
 
 # Source all function scripts
-source("scripts/01_download_data.R")
-source("scripts/02_data_cleaning.R")
-source("scripts/03_analysis_functions.R")
-source("scripts/04_visualization_functions.R")
+source("01_download_data.R")
+source("02_data_cleaning.R")
+source("03_analysis_functions.R")
+source("04_visualization_functions.R")
 ```
 
 \newpage
 
 # Introduction
 
-<!-- 
-YOUR CONTENT HERE: 
-- Introduce the topic of children in care in Ireland
-- Explain why this matters (social significance)
-- Brief overview of Tusla and the care system
-- State your research questions
-- Cite the data source properly
--->
+This data analysis is an up-to-date snapshot of the outcomes of children in state care in Ireland over a second year period (2018-2025), using comphresive data from the Central Statistics Office. Drawing on the outcomes of over 8,000 Irish children, this study quantifies educational inequality, identifies success factors and provides future predictions of performance based on current trends. This analysis was completed as part of module in UCD on R programming. Analysis completed by Caolán Maguire
 
 ## Background
 
