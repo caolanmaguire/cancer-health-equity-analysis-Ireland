@@ -15,8 +15,8 @@ bibliography: references.bib
 ```{r setup, include=FALSE}
 
 # Load packages
-library(tidyverse)  # Data manipulation and visualization
-library(purrr)      # Functional programming (REQUIRED!)
+library(tidyverse)  # Data manipulation and visualisation
+library(purrr)      # Functional programming
 library(knitr)      # Tables
 library(scales)     # Number formatting
 
@@ -31,7 +31,7 @@ theme_set(theme_minimal(base_size = 11))
 
 # Executive Summary
 
-This analysis examines educational outcomes of children in state care in Ireland using administrative data from the Central Statistics Office covering 2018-2025. The study analyzes 8,435 children (5,257 currently in care and 3,178 who have left care) to identify educational gaps, placement effects, and factors influencing success.
+This analysis explores educational outcomes of children in state care in the Republic of Ireland using administrative data from the Central Statistics Office covering 2018-2025. The study analyzes 8,435 children (5,257 currently in care and 3,178 who have left care) to identify educational gaps, placement effects, and factors influencing success.
 
 **Key Findings:**
 
@@ -64,7 +64,7 @@ Data from CSO Ireland "Educational Attendance, Attainment and Other Outcomes of 
 ## Data Loading and Preparation
 
 ```{r load-data}
-# Load EAACC tables using RELATIVE PATHS and NATIVE PIPE |>
+# Load EAACC tables
 
 sex_data <- read_csv("data/EAACC04.csv", show_col_types = FALSE)
 legal_data <- read_csv("data/EAACC08.csv", show_col_types = FALSE)
@@ -80,7 +80,6 @@ glimpse(sex_data)
 ### Sex Distribution
 
 ```{r sex-analysis}
-# Using native pipe |> (NOT %>%)
 sex_summary <- sex_data |>
   filter(Statistic == "Children in care in January 2024",
          Sex != "Both sexes") |>
@@ -102,7 +101,7 @@ ggplot(sex_summary, aes(x = Sex, y = Count, fill = Sex)) +
   theme(legend.position = "none") +
   scale_y_continuous(labels = comma)
 
-ggsave("plots/sex_distribution.png", width = 8, height = 6)
+ggsave("plots/sex_distribution.png", width = 10, height = 6)
 ```
 
 **Commentary:** The care population shows a relatively balanced gender distribution with 2,712 males (51.6%) and 2,545 females (48.4%). This near-equal split allows for meaningful gender-based comparisons.
@@ -250,7 +249,7 @@ ggplot(stability_plot_data, aes(x = Stability_Level, y = Total, fill = Stability
 ggsave("plots/stability_levels.png", width = 10, height = 6)
 ```
 
-**Commentary:** The ordered factor visualization clearly demonstrates the distribution across stability levels. Nearly half (49.7%) achieve stable placement, but a substantial minority (17.8%) experience high instability with 4+ moves, which research shows significantly impacts educational continuity and emotional wellbeing.
+**Commentary:** The ordered factor visualisation clearly demonstrates the distribution across stability levels. Nearly half (49.7%) achieve stable placement, but a substantial minority (17.8%) experience high instability with 4+ moves, which research shows significantly impacts educational continuity and emotional wellbeing.
 
 ### Legal Status Distribution Analysis
 
@@ -380,7 +379,6 @@ kable(summary_df,
 ### Placement Variability Analysis
 
 ```{r placement-variability}
-# Calculate detailed placement statistics
 # Calculate detailed placement statistics
 
 # Function to calculate weighted quantiles (DEFINE FIRST!)
@@ -527,7 +525,6 @@ if(all(total_checks$Match)) {
 # Note: This is a conceptual demonstration as we don't have cross-tabulated data
 
 cat("Conceptual Analysis: Placement Stability by Legal Status\n")
-cat("=========================================================\n\n")
 
 cat("Hypothesis: Children under voluntary arrangements may have more stable\n")
 cat("placements than those under court orders, as voluntary care often involves\n")
@@ -794,9 +791,9 @@ if (any(is.na(gap_summary$Gap))) {
 
 **Commentary:** Using purrr's `map_df` function, we efficiently analyzed multiple educational outcomes with consistent methodology. This functional programming approach demonstrates the power of purrr for grouped analyses.
 
-### Visualization: Educational Outcomes Comparison
+### Visualisation: Educational Outcomes Comparison
 
-```{r outcomes-visualization, fig.height=7}
+```{r outcomes-visualisation, fig.height=7}
 # Only plot outcomes where we have data
 gap_plot_data <- gap_summary |>
   filter(!is.na(Gap)) |>
@@ -833,13 +830,13 @@ if (nrow(gap_plot_data) > 0) {
   
   ggsave("plots/educational_gap.png", width = 10, height = 7)
 } else {
-  cat("No gap data available for visualization\n")
+  cat("No gap data available for visualisation\n")
 }
 ```
 
-**Commentary:** This visualization clearly demonstrates the educational disadvantage faced by children in care across measured outcomes.
+**Commentary:** This visualisation clearly demonstrates the educational disadvantage faced by children in care across measured outcomes.
 
-### Gap Magnitude Visualization
+### Gap Magnitude Visualisation
 
 ```{r gap-diverging, fig.height=6}
 # Create diverging chart showing gap magnitude
@@ -917,7 +914,7 @@ ggplot(stability_summary, aes(x = Stability, y = Count, fill = Stability)) +
   theme(legend.position = "none") +
   scale_y_continuous(labels = comma)
 
-ggsave("plots/stability_categories.png", width = 8, height = 6)
+ggsave("plots/stability_categories.png", width = 10, height = 6)
 ```
 
 **Commentary:** Using purrr's mapping functions, we categorized children by placement stability. This analysis demonstrates that approximately 50% experience moderate to high instability, which likely impacts educational continuity.
@@ -994,7 +991,7 @@ The package was chosen because:
 
 1. It provides more comprehensive summaries than base R
 2. It handles different data types intelligently
-3. It includes inline visualizations (histograms) for quick distribution checks
+3. It includes inline visualisations (histograms) for quick distribution checks
 4. The output is tidy and compatible with dplyr workflows
 5. It's particularly useful for large datasets with mixed types
 
@@ -1012,7 +1009,7 @@ sex_skim
 
 ## Function 2: skim_without_charts() - Report-Ready Summaries
 
-When creating reports or documents, the inline histograms from `skim()` may not render properly. The `skim_without_charts()` function provides clean summaries without visualizations.
+When creating reports or documents, the inline histograms from `skim()` may not render properly. The `skim_without_charts()` function provides clean summaries without visualisations.
 
 ```{r skimr-function2}
 # Prepare placement data (using data from Part 1)
@@ -1102,7 +1099,7 @@ The skimr package provides three main advantages over base R:
 
 **Functions Demonstrated:**
 
-1. `skim()` - Comprehensive summaries with inline visualizations
+1. `skim()` - Comprehensive summaries with inline visualisations
 2. `skim_without_charts()` - Clean summaries for professional reports  
 3. `yank()` - Extract summaries for specific data types
 
@@ -1345,11 +1342,11 @@ summary.gap_analysis <- function(object, ...) {
 
 ## S3 Method: plot()
 
-The plot method creates a professional visualization of the gap analysis using ggplot2.
+The plot method creates a professional visualisation of the gap analysis using ggplot2.
 ```{r gap-plot-method}
 #' Plot Method for gap_analysis Objects
 #'
-#' Creates comprehensive visualization of gap analysis results
+#' Creates comprehensive visualisation of gap analysis results
 #'
 #' @param x An object of class "gap_analysis"
 #' @param ... Additional arguments (not used)
@@ -1397,7 +1394,7 @@ plot.gap_analysis <- function(x, ...) {
 }
 ```
 
-**Commentary:** The plot method creates a professional visualization that is entirely different from the text-based print() and summary() methods. It displays both rates in a bar chart with clear annotations showing sample sizes, the gap magnitude, effect size, and confidence interval. This visual representation makes the gap immediately interpretable for stakeholders and policymakers.
+**Commentary:** The plot method creates a professional visualisation that is entirely different from the text-based print() and summary() methods. It displays both rates in a bar chart with clear annotations showing sample sizes, the gap magnitude, effect size, and confidence interval. This visual representation makes the gap immediately interpretable for stakeholders and policymakers.
 
 ## Working Examples
 
@@ -1414,7 +1411,6 @@ lc_gap <- gap_analysis(
 )
 
 # Demonstrate print() method (concise)
-cat("=== Using print() method (concise output) ===\n")
 print(lc_gap)
 ```
 
@@ -1423,7 +1419,6 @@ print(lc_gap)
 ### Example 2: Detailed Statistical Summary
 ```{r gap-example-2}
 # Demonstrate summary() method (detailed)
-cat("\n\n=== Using summary() method (detailed output) ===\n")
 summary(lc_gap)
 ```
 
@@ -1432,11 +1427,10 @@ summary(lc_gap)
 ### Example 3: Visual Representation
 ```{r gap-example-3, fig.width=10, fig.height=7}
 # Demonstrate plot() method (visual output)
-cat("\n\n=== Using plot() method (visual output) ===\n")
 plot(lc_gap)
 ```
 
-**Commentary:** The visualization clearly displays the gap, making it immediately interpretable. The plot method is entirely different from both print() and summary(), providing visual communication suitable for reports, presentations, and policy documents.
+**Commentary:** The visualisation clearly displays the gap, making it immediately interpretable. The plot method is entirely different from both print() and summary(), providing visual communication suitable for reports, presentations, and policy documents.
 
 ### Example 4: Multiple Outcomes Analysis
 ```{r gap-example-4}
@@ -1480,9 +1474,9 @@ kable(comparison,
 
 ## Summary of Part 3
 
-This section successfully demonstrated:
+This section demonstrates some of the stated requirements of this project:
 
-1. **Custom Function Creation** - `gap_analysis()` with comprehensive statistical calculations including effect sizes and confidence intervals
+1. **Custom Function Creation** - `gap_analysis()` with statistical calculations including effect sizes and confidence intervals
 
 2. **S3 Class Implementation** - Proper class assignment enabling method dispatch
 
@@ -1493,8 +1487,7 @@ This section successfully demonstrated:
 
 4. **Input Validation** - Error handling for invalid inputs ensures robust function behavior
 
-5. **Statistical Rigor** - Appropriate effect size measures (Cohen's h), confidence intervals, and interpretation guidelines
+5. **Statistical Rigor** - Appropriate effect size measures, confidence intervals, and interpretation guidelines
 
 6. **Practical Application** - Working examples demonstrate real-world usage with educational data
 
-The function provides a reusable, well-documented tool for educational gap analysis that combines statistical rigor with practical interpretability, suitable for research, policy analysis, and intervention planning.
