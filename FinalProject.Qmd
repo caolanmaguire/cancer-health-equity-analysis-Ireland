@@ -1,13 +1,3 @@
-knitr::opts_chunk$set(
-  echo = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width = 10,
-  fig.height = 6,
-  tidy.opts = list(width.cutoff = 60),
-  tidy = TRUE
-)
-
 ---
 title: "Educational Outcomes of Children in Care in Ireland"
 subtitle: "An Exploratory Analysis of CSO data (2018-2025)"
@@ -23,15 +13,6 @@ bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
-# Knitr options
-knitr::opts_chunk$set(
-  echo = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  fig.width = 8,
-  fig.height = 6,
-  fig.align = "center"
-)
 
 # Load packages
 library(tidyverse)  # Data manipulation and visualization
@@ -271,7 +252,7 @@ ggsave("plots/stability_levels.png", width = 10, height = 6)
 
 **Commentary:** The ordered factor visualization clearly demonstrates the distribution across stability levels. Nearly half (49.7%) achieve stable placement, but a substantial minority (17.8%) experience high instability with 4+ moves, which research shows significantly impacts educational continuity and emotional wellbeing.
 
-### 2.4.2 Legal Status Distribution Analysis
+### Legal Status Distribution Analysis
 
 ```{r legal-status-proportions}
 # Calculate proportions and statistics using purrr
@@ -318,7 +299,7 @@ kable(legal_categories,
 
 **Commentary:** Using purrr's `map_df`, we calculated detailed proportions across legal statuses. Court-ordered care (including care orders and interim orders) accounts for `r legal_categories |> filter(Category == "Court-Ordered") |> pull(Percentage)`% of placements, indicating most children are in involuntary care due to child protection concerns rather than voluntary family arrangements. This has implications for reunification prospects and care planning.
 
-### 2.4.3 Gender Distribution Detailed Analysis
+### Gender Distribution Detailed Analysis
 
 ```{r gender-detailed-analysis}
 # Detailed gender statistics using purrr
@@ -654,11 +635,6 @@ These findings establish the foundation for examining educational outcome gaps i
 
 **Commentary:** The majority of children (3,825 or 72.8%) are in care under formal care orders, indicating court-mandated removal.
 
-\newpage
-# ============================================================================
-# COMPLETE FIXED GAP ANALYSIS SECTION
-# Replace everything from "## Educational Outcomes Analysis" onwards in your Qmd
-# ============================================================================
 
 ## Educational Outcomes Analysis
 
