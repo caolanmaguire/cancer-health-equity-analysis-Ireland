@@ -1,1 +1,445 @@
- 
+---
+title: "Educational Outcomes of Children in Care in Ireland, 2018-2025"
+subtitle: "An Analysis of Educational Attainment, Placement Effects, and Success Factors"
+author: "Your Name Here"
+date: "`r Sys.Date()`"
+format: 
+  pdf:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    geometry: margin=1in
+    fontsize: 11pt
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+# Load all required packages
+library(tidyverse)
+library(purrr)
+library(knitr)
+
+# Set knitr options
+knitr::opts_chunk$set(
+  echo = TRUE,           # Show code
+  warning = FALSE,       # Hide warnings
+  message = FALSE,       # Hide messages
+  fig.width = 8,         # Figure width
+  fig.height = 6,        # Figure height
+  fig.align = "center"   # Center figures
+)
+
+# Source all function scripts
+source("scripts/01_download_data.R")
+source("scripts/02_data_cleaning.R")
+source("scripts/03_analysis_functions.R")
+source("scripts/04_visualization_functions.R")
+```
+
+\newpage
+
+# Introduction
+
+<!-- 
+YOUR CONTENT HERE: 
+- Introduce the topic of children in care in Ireland
+- Explain why this matters (social significance)
+- Brief overview of Tusla and the care system
+- State your research questions
+- Cite the data source properly
+-->
+
+## Background
+
+Children in care in Ireland are among the most vulnerable in society...
+
+## Research Questions
+
+This analysis addresses the following key questions:
+
+1. How do educational outcomes for children in care compare to the general population?
+2. What factors predict successful educational and employment outcomes?
+3. Does placement type (foster care vs. residential care) affect outcomes?
+4. How have outcomes changed from 2018 to 2025?
+
+## Data Source
+
+This analysis uses data from the Central Statistics Office (CSO) publication "Educational Attendance, Attainment and Other Outcomes of Children in Care, 2018-2025" [@cso_children_care_2024]. The dataset contains information on 5,257 children in care in January 2024 and 3,178 children who left care since April 2018.
+
+Data available at: [CSO Website](https://www.cso.ie/en/statistics/education/educationalattendanceandattainmentofchildrenincare/)
+
+\newpage
+
+# Part 1: Data Analysis {#sec-part1}
+
+```{r load-data}
+# YOUR CODE HERE: Load your cleaned data
+# data <- read_csv("data/processed/cleaned_data.csv")
+```
+
+## Data Overview
+
+```{r data-overview}
+# YOUR CODE HERE: Show basic data structure
+# - Number of observations
+# - Number of variables  
+# - Variable types
+# - Sample of the data
+```
+
+<!-- COMMENT: Explain what the dataset contains -->
+
+## Demographic Profile
+
+### Age and Gender Distribution
+
+```{r demographics}
+# YOUR CODE HERE: Create demographic summary
+# Use your summarize_demographics() function
+```
+
+```{r plot-demographics}
+# YOUR CODE HERE: Create demographic plots
+# Use your plotting functions
+```
+
+<!-- COMMENT: Explain what you see in the demographics -->
+
+### Care Characteristics
+
+```{r care-characteristics}
+# YOUR CODE HERE: Summarize care types and placements
+```
+
+<!-- COMMENT: Explain the care system characteristics -->
+
+## Educational Outcomes Analysis
+
+### Comparison with General Population
+
+```{r comparison-analysis}
+# YOUR CODE HERE: Compare children in care to all children
+# This is a KEY analysis showing the gap
+```
+
+```{r plot-comparison}
+# YOUR CODE HERE: Create comparison visualization
+```
+
+<!-- COMMENT: Discuss the gap and what it means -->
+
+### Outcomes by Placement Type
+
+```{r placement-analysis}
+# YOUR CODE HERE: Analyze outcomes by placement type
+# MUST USE PURRR HERE - this is a requirement!
+# Example: Use map() or map_dbl() to analyze multiple groups
+```
+
+```{r plot-placement}
+# YOUR CODE HERE: Visualize placement outcomes
+```
+
+<!-- COMMENT: Discuss which placements show better outcomes -->
+
+### Temporal Trends (2018-2024)
+
+```{r temporal-analysis}
+# YOUR CODE HERE: Analyze trends over time
+# Use purrr to analyze multiple years
+```
+
+```{r plot-trends}
+# YOUR CODE HERE: Create trend visualization
+```
+
+<!-- COMMENT: Discuss how outcomes have changed over time -->
+
+## Success Factors Analysis
+
+### Predictive Analysis
+
+```{r predictive-analysis}
+# YOUR CODE HERE: Identify what predicts success
+# This could use regression or similar approaches
+# Use purrr for multiple model comparisons
+```
+
+```{r plot-predictors}
+# YOUR CODE HERE: Visualize key predictors
+```
+
+<!-- COMMENT: Discuss which factors matter most -->
+
+### Subgroup Comparisons
+
+```{r subgroup-analysis}
+# YOUR CODE HERE: Compare different subgroups
+# Use purrr for efficient comparison across groups
+```
+
+<!-- COMMENT: Explain subgroup differences -->
+
+## Summary Tables
+
+```{r summary-tables}
+# YOUR CODE HERE: Create comprehensive summary tables
+# Include key statistics, rates, and comparisons
+```
+
+<!-- COMMENT: Explain what each table shows -->
+
+## Part 1 Conclusions
+
+<!-- 
+YOUR CONTENT HERE:
+- Summarize key findings from your analysis
+- Answer your research questions
+- Discuss policy implications
+- Note any limitations
+-->
+
+\newpage
+
+# Part 2: R Package Demonstration {#sec-part2}
+
+<!-- 
+YOUR CONTENT HERE:
+- Choose an R package NOT used in the module
+- Explain its purpose
+- Demonstrate 3 main functions with ORIGINAL examples
+- Cannot copy examples from help pages!
+-->
+
+## Package Overview
+
+<!-- Introduce your chosen package -->
+
+## Package Citation
+
+```{r package-citation}
+# YOUR CODE HERE: Get package citation
+# citation("package_name")
+```
+
+## Function 1: [Function Name]
+
+### Purpose
+
+<!-- Explain what this function does -->
+
+### Demonstration
+
+```{r function1-demo}
+# YOUR CODE HERE: Original example using the function
+# Must be different from help page examples!
+```
+
+<!-- COMMENT: Explain the output and why it's useful -->
+
+## Function 2: [Function Name]
+
+### Purpose
+
+<!-- Explain what this function does -->
+
+### Demonstration
+
+```{r function2-demo}
+# YOUR CODE HERE: Original example
+```
+
+<!-- COMMENT: Explain the output -->
+
+## Function 3: [Function Name]
+
+### Purpose
+
+<!-- Explain what this function does -->
+
+### Demonstration
+
+```{r function3-demo}
+# YOUR CODE HERE: Original example
+```
+
+<!-- COMMENT: Explain the output -->
+
+## Part 2 Summary
+
+<!-- Summarize what the package is useful for -->
+
+\newpage
+
+# Part 3: Functions and Programming {#sec-part3}
+
+<!-- 
+YOUR CONTENT HERE:
+- Create a statistical function
+- Implement S3 classes
+- Create print(), summary(), and plot() methods
+- These methods must be VERY DIFFERENT from each other
+- Include working examples
+-->
+
+## Function Overview
+
+<!-- Explain what statistical analysis your function performs -->
+
+## Main Function
+
+```{r main-function}
+# YOUR CODE HERE: Create your main analysis function
+# It should return an object with a custom S3 class
+
+# Example structure:
+# my_analysis <- function(data, ...) {
+#   # YOUR ANALYSIS LOGIC
+#   
+#   result <- list(
+#     data = processed_data,
+#     statistics = stats,
+#     model = model_results,
+#     # other components
+#   )
+#   
+#   class(result) <- "your_class_name"
+#   return(result)
+# }
+```
+
+## Print Method
+
+```{r print-method}
+# YOUR CODE HERE: Create print method
+# Should show simple, concise output
+
+# print.your_class_name <- function(x, ...) {
+#   cat("Your Analysis Results\n")
+#   cat("=====================\n")
+#   # YOUR PRINT LOGIC
+# }
+```
+
+## Summary Method
+
+```{r summary-method}
+# YOUR CODE HERE: Create summary method
+# Should show detailed statistical output
+# Must be VERY DIFFERENT from print method!
+
+# summary.your_class_name <- function(object, ...) {
+#   # YOUR SUMMARY LOGIC
+#   # Calculate additional statistics
+#   # Return structured summary
+# }
+```
+
+## Plot Method
+
+```{r plot-method}
+# YOUR CODE HERE: Create plot method
+# Should create visualization of results
+
+# plot.your_class_name <- function(x, ...) {
+#   # YOUR PLOTTING LOGIC
+#   # Create relevant visualization
+# }
+```
+
+## Example Usage
+
+```{r example-usage}
+# YOUR CODE HERE: Demonstrate your function with real data
+
+# Example:
+# result <- my_analysis(data)
+# 
+# # Test print method
+# print(result)
+# 
+# # Test summary method  
+# summary(result)
+# 
+# # Test plot method
+# plot(result)
+```
+
+## Part 3 Summary
+
+<!-- Explain what your function does and how the methods work -->
+
+\newpage
+
+# Overall Conclusions
+
+<!-- 
+YOUR CONTENT HERE:
+- Summarize findings from all three parts
+- Discuss broader implications
+- Limitations of the analysis
+- Suggestions for future research
+-->
+
+\newpage
+
+# References
+
+<!-- References will auto-generate here from your .bib file -->
+
+::: {#refs}
+:::
+
+\newpage
+
+# Appendix: Additional Tables and Figures
+
+```{r appendix-tables}
+# YOUR CODE HERE: Additional supporting tables
+```
+
+```{r appendix-plots}
+# YOUR CODE HERE: Additional supporting plots
+```
+
+---
+
+<!-- 
+SUBMISSION CHECKLIST:
+
+Part 1 Analysis:
+- [ ] Used at least one purrr function
+- [ ] Only used packages from the module
+- [ ] All code is commented
+- [ ] Every plot and table is explained
+- [ ] Clear introduction and conclusion
+- [ ] Proper citations
+
+Part 2 Package:
+- [ ] Chose package not used in module
+- [ ] Explained package purpose
+- [ ] Demonstrated 3 functions
+- [ ] Used original examples (not from help pages)
+- [ ] Cited the package properly
+
+Part 3 Functions:
+- [ ] Created working function
+- [ ] Assigned S3 class
+- [ ] Created print() method
+- [ ] Created summary() method (DIFFERENT from print!)
+- [ ] Created plot() method
+- [ ] Included working example
+
+Quarto:
+- [ ] Three sections clearly identifiable
+- [ ] All code visible and commented
+- [ ] No lines beyond margins
+- [ ] File renders without errors
+- [ ] Data file in same directory
+
+Ready to submit:
+- [ ] .Qmd file
+- [ ] Rendered PDF
+- [ ] Data files
+-->
